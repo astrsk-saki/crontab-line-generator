@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>CRONTAB Line Generator</title>
+    <meta name="description" content="Generate Crontab Line easily.">
+    <meta name="keywords" content="Generate Crontab Maker" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css' />  
+</head>
+<body>
+
+<div class="wrapper">
+
+    <div class="container">
+        <h4>CRONTAB Line Generator <a href="https://github.com/astrsk-saki/crontab-line-generator" target="_blank">github</a></h4>
+        <hr style="width: 100%; color: #d2d6de; height: 2px; background-color:#d2d6de;" />
+
+        <form>
+            <div class="row">
+                <div class="col-md-2"><label for="week">曜日</label></div>
+                <div class="col-md-10">
+                    <fieldset class="btn-group col-md-12" data-toggle="buttons">
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="week_type" value="1">毎曜日
+                        </label>
+                    </fieldset>
+                    <fieldset class="btn-group week_fieldset col-md-12" data-toggle="buttons">
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="week" value="1">月
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="week" value="2">火
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="week" value="3">水
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="week" value="4">木
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="week" value="5">金
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="week" value="6">土
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="week" value="0">日
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+            <hr style="width: 100%; color: #dddddd; height: 1px; background-color:#dddddd; margin: 5px;" />
+            <div class="row">
+                <div class="col-md-2"><label for="month">月</label></div>
+                <div class="col-md-10">
+                    <fieldset class="btn-group col-md-12" data-toggle="buttons">
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="month_type" value="1">毎月
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="month_type" value="2">2ヶ月おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="month_type" value="3">3ヶ月おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="month_type" value="4">4ヶ月おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="month_type" value="6">6ヶ月おき
+                        </label>
+                    </fieldset>
+                    <fieldset class="btn-group month_fieldset col-md-12" data-toggle="buttons">
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="month" value="1">1月
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="month" value="2">2月
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="month" value="3">3月
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="month" value="4">4月
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="month" value="5">5月
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="month" value="6">6月
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="month" value="7">7月
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="month" value="8">8月
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="month" value="9">9月
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="month" value="10">10月
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="month" value="11">11月
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="month" id="month12" value="12">12月
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+            <hr style="width: 100%; color: #dddddd; height: 1px; background-color:#dddddd; margin: 5px;" />
+            <div class="row">
+                <div class="col-md-2"><label for="day">日</label></div>
+                <div class="col-md-10">
+                    <fieldset class="btn-group col-md-12" data-toggle="buttons">
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day_type" value="1">毎日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day_type" value="2">2日おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day_type" value="3">3日おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day_type" value="4">4日おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day_type" value="5">5日おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day_type" value="6">6日おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day_type" value="7">7日おき
+                        </label>
+                    </fieldset>
+
+                    <fieldset class="btn-group day_fieldset col-md-12" data-toggle="buttons">
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="1">1日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="2">2日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="3">3日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="4">4日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="5">5日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="6">6日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="7">7日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="8">8日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="9">9日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="10">10日
+                        </label>
+                    </fieldset>
+                    <fieldset class="btn-group day_fieldset col-md-12" data-toggle="buttons">
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="11">11日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="12">12日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="13">13日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="14">14日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="15">15日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="16">16日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="17">17日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="18">18日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="19">19日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="20">20日
+                        </label>
+                    </fieldset>
+                    <fieldset class="btn-group day_fieldset col-md-12" data-toggle="buttons">
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="21">21日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="22">22日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="23">23日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="24">24日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="25">25日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="26">26日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="27">27日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="28">28日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="29">29日
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="30">30日
+                        </label>
+                    </fieldset>
+                    <fieldset class="btn-group day_fieldset col-md-12" data-toggle="buttons">
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="day" value="31">31日
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+            <hr style="width: 100%; color: #dddddd; height: 1px; background-color:#dddddd; margin: 5px;" />
+            <div class="row">
+                <div class="col-md-2"><label for="hour">時</label></div>
+                <div class="col-md-10">
+                    <fieldset class="btn-group col-md-12" data-toggle="buttons">
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour_type" value="1">毎時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour_type" value="2">2時間おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour_type" value="3">3時間おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour_type" value="4">4時間おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour_type" value="6">6時間おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour_type" value="8">8時間おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour_type" value="12">12時間おき
+                        </label>
+                    </fieldset>
+                    <fieldset class="btn-group hour_fieldset col-md-12" data-toggle="buttons">
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="0">0時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="1">1時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="2">2時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="3">3時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="4">4時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="5">5時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="6">6時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="7">7時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="8">8時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="9">9時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="10">10時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="11">11時
+                        </label>
+                    </fieldset>
+                    <fieldset class="btn-group hour_fieldset col-md-12" data-toggle="buttons">
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="12">12時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="13">13時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="14">14時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="15">15時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="16">16時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="17">17時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="18">18時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="19">19時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="20">20時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="21">21時
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="hour" value="22">22時
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+            <hr style="width: 100%; color: #dddddd; height: 1px; background-color:#dddddd; margin: 5px;" />
+            <div class="row">
+                <div class="col-md-2"><label for="min">分</label></div>
+                <div class="col-md-10">
+                    <fieldset class="btn-group col-md-12" data-toggle="buttons">
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min_type" value="1">毎分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min_type" value="2">2分おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min_type" value="3">3分おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min_type" value="4">4分おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min_type" value="5">5分おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min_type" value="6">6分おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min_type" value="10">10分おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min_type" value="12">12分おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min_type" value="15">15分おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min_type" value="20">20分おき
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min_type" value="30">30分おき
+                        </label>
+                    </fieldset>
+                    <fieldset class="btn-group min_fieldset col-md-12" data-toggle="buttons">
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="0">0分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="1">1分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="2">2分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="3">3分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="4">4分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="5">5分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="6">6分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="7">7分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="8">8分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="9">9分
+                        </label>
+                    </fieldset>
+                    <fieldset class="btn-group min_fieldset col-md-12" data-toggle="buttons">
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="10">10分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="11">11分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="12">12分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="13">13分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="14">14分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="15">15分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="16">16分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="17">17分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="18">18分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="19">19分
+                        </label>
+                    </fieldset>
+                    <fieldset class="btn-group min_fieldset col-md-12" data-toggle="buttons">
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="20">20分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="21">21分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="22">22分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="23">23分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="24">24分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="25">25分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="26">26分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="27">27分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="28">28分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="29">29分
+                        </label>
+                    </fieldset>
+                    <fieldset class="btn-group min_fieldset col-md-12" data-toggle="buttons">
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="30">30分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="31">31分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="32">32分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="33">33分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="34">34分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="35">35分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="36">36分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="37">37分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="38">38分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="39">39分
+                        </label>
+                    </fieldset>
+                    <fieldset class="btn-group min_fieldset col-md-12" data-toggle="buttons">
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="40">40分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="41">41分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="42">42分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="43">43分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="44">44分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="45">45分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="46">46分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="47">47分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="48">48分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="49">49分
+                        </label>
+                    </fieldset>
+                    <fieldset class="btn-group min_fieldset col-md-12" data-toggle="buttons">
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="50">50分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="51">51分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="52">52分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="53">53分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="54">54分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="55">55分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="56">56分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="57">57分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="58">58分
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off" class="min" value="59">59分
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+            <hr style="width: 100%; color: #dddddd; height: 1px; background-color:#dddddd; margin: 5px;" />
+            <div class="row">
+                <div class="col-md-2">
+                    <label for="command" class="required">コマンド</label>
+                </div>
+                <div class="col-md-10">
+                    <fieldset class="form-inline command_fieldset col-md-12">
+                        <input type="text" id="command" name="command" required="required" class="form-control" size="80" value="/bin/ls"/> 
+                    </fieldset>
+                </div>
+            </div>
+            <hr style="width: 100%; color: #dddddd; height: 1px; background-color:#dddddd; margin: 5px;" />
+            <div class="row">
+                <div class="col-md-2"><label for="stdout">標準出力</label></div>
+                <div class="col-md-2">
+                    <div class="col-md-12">
+                        <fieldset class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default active">
+                                <input type="radio" name="stdout_type" autocomplete="off" class="stdout_type" value="1">/dev/null
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="stdout_type" autocomplete="off" class="stdout_type" value="2">指定
+                            </label>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <fieldset class="form-inline stdout_fieldset col-md-12">
+                        <input type="text" id="stdout" name="stdout" required="required" class="form-control" size="80" value="/dev/null"/> 
+                    </fieldset>
+                </div>
+            </div>
+            <hr style="width: 100%; color: #dddddd; height: 1px; background-color:#dddddd; margin: 5px;" />
+            <div class="row">
+                <div class="col-md-2"><label for="stderr">標準エラー</label></div>
+                <div class="col-md-2">
+                    <div class="col-md-12">
+                        <fieldset class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default active">
+                                <input type="radio" name="stderr_type" autocomplete="off" class="stderr_type" value="1">/dev/null
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="stderr_type" autocomplete="off" class="stderr_type" value="2">指定
+                            </label>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <fieldset class="form-inline stderr_fieldset col-md-12">
+                        <input type="text" id="stderr" name="stderr" required="required" class="form-control" size="80" value="/dev/null"/> 
+                    </fieldset>
+                </div>
+            </div>
+            <hr style="width: 100%; color: #dddddd; height: 1px; background-color:#dddddd; margin: 5px;" />
+            <div class="row">
+                <div class="col-md-2"><label for="crontab">設定値</label></div>
+                <div class="col-md-2">
+                    <div class="col-md-12">
+                        <button type="button" id="clipboard" class="btn btn-sm btn-primary">コピー</button>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <fieldset class="form-inline col-md-12">
+                        <input type="text" id="crontab" name="crontab" class="form-control" size="80"/> 
+                    </fieldset>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!-- JS -->
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js'></script>
+<script src='./crontab.js'></script>
+<!-- JS -->
+</body>
+</html>
